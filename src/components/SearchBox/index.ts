@@ -1,2 +1,1 @@
-export * from './SearchBox';
-export * from './SearchBoxInput';
+export { SearchBoxInput as SearchBox } from './SearchBoxInput';

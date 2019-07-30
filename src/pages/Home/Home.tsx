@@ -28,6 +28,8 @@ export const Home = () => {
   return (
     <Layout>
       <SearchBox
+        autoFocus
+        placeholder="Type something to see some awesomeness"
         value={text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setText(e.target.value);
@@ -43,12 +45,12 @@ export const Home = () => {
                 alt={img.title}
                 thumbSrc={
                   layoutMode === 'single_column'
-                    ? img.images.original_still.url
-                    : img.images.fixed_width_downsampled.webp
+                    ? img.images.fixed_height_still.url
+                    : img.images.fixed_width_still.url
                 }
                 src={
                   layoutMode === 'single_column'
-                    ? img.images.original.webp
+                    ? img.images.fixed_height.webp
                     : img.images.fixed_width.webp
                 }
                 backgroundColor={

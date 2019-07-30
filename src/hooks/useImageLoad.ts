@@ -9,11 +9,7 @@ export const useImageLoad = (src: string, enabled: boolean) => {
   }, [src]);
 
   useEffect(() => {
-    if (src) {
-      if (!enabled) {
-        return;
-      }
-
+    if (src && enabled) {
       const img = new Image();
       img.onload = () => {
         setLoaded(true);

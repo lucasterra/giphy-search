@@ -3,9 +3,9 @@ import 'intersection-observer'; // polyfill
 
 export const useIntersectionObserver = <T extends HTMLElement>(
   target: React.MutableRefObject<T | null>,
+  parentContainer: HTMLElement | null = null,
   rootMargin: string = '0px',
-  threshold: number = 0.3,
-  container: HTMLElement | null = null
+  threshold: number = 0.3
 ) => {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -26,7 +26,7 @@ export const useIntersectionObserver = <T extends HTMLElement>(
         setIsVisible(data.isIntersecting);
       },
       {
-        root: container,
+        root: parentContainer,
         rootMargin,
         threshold,
       }
@@ -39,7 +39,7 @@ export const useIntersectionObserver = <T extends HTMLElement>(
         observer.current.disconnect();
       }
     };
-  }, [container, rootMargin, target, threshold]);
+  }, [parentContainer, rootMargin, target, threshold]);
 
   return isVisible;
 };
