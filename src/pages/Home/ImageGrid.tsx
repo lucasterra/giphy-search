@@ -36,6 +36,8 @@ export const ImageGrid = memo<ImageGridProps>(({ layoutMode, images }) => {
 
   return (
     <Grid
+      data-testid="grid"
+      data-grid-mode={layoutMode}
       numOfColumns={layoutMode === 'single_column' ? 1 : 3}
       childrenHeights={heights}
       children={children}

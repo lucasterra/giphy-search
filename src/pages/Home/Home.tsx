@@ -8,7 +8,11 @@ import { ImageGrid } from './ImageGrid';
 
 const IMAGES_PER_PAGE = 24;
 
-export const Home = () => {
+interface HomeProps {
+  debounceTime?: number;
+}
+
+export const Home: React.FC<HomeProps> = ({ debounceTime = 250 }) => {
   const {
     text,
     setSearchTerm,
@@ -16,16 +20,18 @@ export const Home = () => {
     isLoading,
     imageData,
     hasMoreImages,
-  } = useImageSearch(IMAGES_PER_PAGE);
+  } = useImageSearch(IMAGES_PER_PAGE, debounceTime);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>('three_column');
 
   return (
     <Layout>
       <Input
         autoFocus
+        data-testid="searchbox"
         placeholder="Type something to see some awesomeness"
         value={text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          console.log('calling this!');
           setSearchTerm(e.target.value);
         }}
       />
@@ -37,6 +43,7 @@ export const Home = () => {
       />
 
       <InfiniteScrollButton
+        data-testid="infinite-scroll-button"
         loadMore={loadMore}
         hidden={!hasMoreImages}
         isLoading={isLoading}

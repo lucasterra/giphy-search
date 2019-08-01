@@ -41,7 +41,7 @@ const useImageFetcher = (data: {
   return imageData;
 };
 
-export const useImageSearch = (imagesPerPage: number) => {
+export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
   const [reducerData, dispatch] = useReducer(reducer, {
     text: '',
     page: 0,
@@ -51,7 +51,7 @@ export const useImageSearch = (imagesPerPage: number) => {
   const { text, isLoading, page, imageData } = reducerData;
 
   // debounce text changes, to avoid calling GIPHY API on every keystroke
-  const [debouncedText] = useDebounce(text, 250);
+  const [debouncedText] = useDebounce(text, debounceTime);
 
   // functions passed on hook return
   const setSearchTerm = useCallback((text: string) => {
@@ -73,7 +73,7 @@ export const useImageSearch = (imagesPerPage: number) => {
       if (mergeData && imageData !== null && data !== null) {
         dispatch({
           type: SET_IMAGE_DATA,
-          payload: { ...data, data: [...imageData.data, ...data.data] },
+          payload: { ...data, data: [...imageData.data, ...(data.data || [])] },
         });
       } else {
         dispatch({ type: SET_IMAGE_DATA, payload: data });

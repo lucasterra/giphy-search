@@ -20,12 +20,14 @@ export const LayoutSwitcher: React.FC<LayoutSwitcherProps> = ({
 }) => (
   <Wrapper>
     <Button
+      data-testid="single-column-button"
       active={layoutMode === 'single_column'}
       onClick={() => setLayoutMode('single_column')}
     >
       Single column
     </Button>
     <Button
+      data-testid="three-column-button"
       active={layoutMode === 'three_column'}
       onClick={() => setLayoutMode('three_column')}
     >

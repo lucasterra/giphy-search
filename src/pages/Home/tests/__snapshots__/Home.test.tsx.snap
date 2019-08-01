@@ -1,0 +1,937 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> it renders correctly 1`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-0"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 92.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 2`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-1"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100.5%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 83.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 83%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 55.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 3`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-2"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 104.5%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 51%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 61.5%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 48.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 76.5%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 89.5%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 4`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-0"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 92.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 162.5%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 68%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 70%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 5`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-1"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100.5%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 83.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 83%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 55.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 66.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 6`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-2"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 104.5%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 51%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 61.5%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 48.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 76.5%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 89.5%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 84%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 56.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 74%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 7`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-0"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 78%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 98%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 149%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 82%; background-color: rgb(173, 121, 5);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 74%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 94.5%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 74%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 8`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-1"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 102.5%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 80%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 67%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 100%; background-color: rgb(196, 183, 210);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 75%; background-color: rgb(174, 41, 85);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 52.5%; background-color: rgb(96, 163, 114);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 82.5%; background-color: rgb(135, 202, 191);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 80%; background-color: rgb(159, 90, 87);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 125%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+</div>
+`;
+
+exports[`<Home /> it renders correctly 9`] = `
+<div
+  class="css-l2pxcp"
+  data-testid="column-2"
+>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 80%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 107%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 94.5%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 133.5%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 88.5%; background-color: rgb(51, 93, 173);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 68%; background-color: rgb(242, 169, 112);"
+    />
+  </div>
+  <div
+    class="css-fy58gd"
+  >
+    <div
+      class="css-8atqhb"
+      data-testid="placeholder"
+      style="padding-top: 125%; background-color: rgb(67, 41, 173);"
+    />
+  </div>
+</div>
+`;
