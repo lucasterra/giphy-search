@@ -5,12 +5,20 @@ import React, {
   useContext,
   useRef,
 } from 'react';
+import styled from '@emotion/styled';
 import { imageGridContext } from './context';
-import { ImageRoot } from './ImageRoot';
-import { ImageGridItem } from './ImageGridItem';
 import { ImageWrapper } from './ImageWrapper';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useIsIntersecting } from '../../hooks/useIntersectionObserver';
 import { useImageLoad } from '../../hooks/useImageLoad';
+
+const Image = styled.img({
+  width: '100%',
+  height: 'auto',
+});
+
+const Placeholder = styled.div({
+  width: '100%',
+});
 
 export interface ProgressiveImageProps
   extends DetailedHTMLProps<
@@ -20,35 +28,37 @@ export interface ProgressiveImageProps
   src: string;
   thumbSrc: string;
   backgroundColor: string;
+  width?: number;
+  height?: number;
 }
 
 export const ProgressiveImage = forwardRef<
   HTMLImageElement,
   ProgressiveImageProps
->(({ alt, src, thumbSrc, backgroundColor, ...props }, ref) => {
+>(({ alt, src, thumbSrc, backgroundColor, width, height, ...props }, ref) => {
   const context = useContext(imageGridContext);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
-  const isIntersecting = useIntersectionObserver(wrapperRef);
-  const loaded = useImageLoad(src, isIntersecting);
-  const thumbLoaded = useImageLoad(thumbSrc, isIntersecting);
+  const isVisible = useIsIntersecting(wrapperRef);
+  const mainImgLoaded = useImageLoad(src, isVisible);
+  const thumbImgLoaded = useImageLoad(thumbSrc, isVisible);
 
   return (
-    <ImageGridItem width={100 / context.numOfColumns} spacing={context.spacing}>
-      <ImageWrapper
-        ref={wrapperRef}
-        backgroundColor={thumbLoaded ? undefined : backgroundColor}
-      >
-        {isIntersecting || loaded ? (
-          <ImageRoot
-            alt={alt}
-            src={loaded ? src : thumbSrc}
-            {...props}
-            ref={ref}
-          />
-        ) : (
-          <div />
-        )}
-      </ImageWrapper>
-    </ImageGridItem>
+    <ImageWrapper ref={wrapperRef} spacing={context.spacing}>
+      {thumbImgLoaded || mainImgLoaded ? (
+        <Image
+          alt={alt}
+          src={mainImgLoaded && isVisible ? src : thumbSrc}
+          {...props}
+          ref={ref}
+        />
+      ) : (
+        <Placeholder
+          style={{
+            paddingTop: width && height ? `${height / (width / 100)}%` : '75%',
+            backgroundColor,
+          }}
+        />
+      )}
+    </ImageWrapper>
   );
 });

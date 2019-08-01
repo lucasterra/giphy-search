@@ -1,6 +1,7 @@
-import { Root } from './shape';
+import { Root } from './schema';
 
-const BASE_ENDPOINT = 'https://api.giphy.com/v1/gifs/search';
+const SEARCH_ENDPOINT = 'https://api.giphy.com/v1/gifs/search';
+const TRENDING_ENDPOINT = 'https://api.giphy.com/v1/gifs/trending';
 const DEFAULT_LANG = 'en';
 const API_KEY = 'CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6';
 
@@ -10,7 +11,15 @@ export async function searchImages(
   offset: number = 0,
   cache: { [key: string]: Root } | null = null
 ) {
-  const url = `${BASE_ENDPOINT}?q=${searchTerm}&limit=${count}&offset=${offset}&rating=G&lang=${DEFAULT_LANG}&api_key=${API_KEY}`;
+  let url = '';
+  if (searchTerm === '') {
+    // search trending
+    url = `${TRENDING_ENDPOINT}?`;
+  } else {
+    // search by keyword
+    url = `${SEARCH_ENDPOINT}?q=${searchTerm}&`;
+  }
+  url += `limit=${count}&offset=${offset}&rating=G&lang=${DEFAULT_LANG}&api_key=${API_KEY}`;
 
   if (cache && cache[url]) {
     return Promise.resolve(cache[url]);

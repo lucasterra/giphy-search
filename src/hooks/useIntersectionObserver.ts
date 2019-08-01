@@ -1,13 +1,23 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import 'intersection-observer'; // polyfill
 
 export const useIntersectionObserver = <T extends HTMLElement>(
   target: React.MutableRefObject<T | null>,
   parentContainer: HTMLElement | null = null,
   rootMargin: string = '0px',
-  threshold: number = 0.3
+  threshold: number = 0.3,
+  onIntersectionChange?: (isIntersecting: boolean) => void
 ) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const isIntersecting = useRef(false);
+  const setIsIntersecting = useCallback(
+    (value: boolean) => {
+      if (isIntersecting.current !== value) {
+        onIntersectionChange && onIntersectionChange(value);
+      }
+      isIntersecting.current = value;
+    },
+    [onIntersectionChange]
+  );
 
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -17,13 +27,13 @@ export const useIntersectionObserver = <T extends HTMLElement>(
     }
 
     if (!target.current) {
-      setIsVisible(false);
+      setIsIntersecting(false);
       return;
     }
 
     observer.current = new IntersectionObserver(
       ([data]) => {
-        setIsVisible(data.isIntersecting);
+        setIsIntersecting(data.isIntersecting);
       },
       {
         root: parentContainer,
@@ -39,7 +49,27 @@ export const useIntersectionObserver = <T extends HTMLElement>(
         observer.current.disconnect();
       }
     };
-  }, [parentContainer, rootMargin, target, threshold]);
+  }, [parentContainer, rootMargin, target, threshold, setIsIntersecting]);
+};
 
-  return isVisible;
+export const useIsIntersecting = <T extends HTMLElement>(
+  target: React.MutableRefObject<T | null>,
+  parentContainer: HTMLElement | null = null,
+  rootMargin: string = '0px',
+  threshold: number = 0.3
+) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const onIntersectionChange = useCallback((value: boolean) => {
+    setIsIntersecting(value);
+  }, []);
+
+  useIntersectionObserver(
+    target,
+    parentContainer,
+    rootMargin,
+    threshold,
+    onIntersectionChange
+  );
+
+  return isIntersecting;
 };

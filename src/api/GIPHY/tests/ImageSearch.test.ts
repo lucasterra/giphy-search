@@ -13,6 +13,19 @@ afterEach(() => {
 });
 
 describe('searchImages API client', () => {
+  describe('search trending', () => {
+    test('call with page 0', async () => {
+      const result = await searchImages('', 20, 0);
+
+      expect(globalAny.fetch).toHaveBeenCalledTimes(1);
+      expect(globalAny.fetch).toHaveBeenLastCalledWith(
+        'https://api.giphy.com/v1/gifs/trending?limit=20&offset=0&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6'
+      );
+
+      expect(result).toEqual({});
+    });
+  });
+
   describe('search kittens', () => {
     test('call with page 0', async () => {
       const result = await searchImages('kittens', 20, 0);

@@ -1,2 +1,2 @@
 export * from './ImageSearch';
-export * from './shape';
+export * from './schema';

@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
-import { useDebounce } from 'use-debounce';
 import { Layout } from '../../components/Layout';
 import { SearchBox } from '../../components/SearchBox';
-import { ImageGrid, ProgressiveImage } from '../../components/ImageGrid';
 import { useImageSearch } from './useImageSearch';
 import { LayoutMode, LayoutSwitcher } from './LayoutSwitcher';
+import { InfiniteScrollButton } from './InfiniteScrollButton';
+import { ImageGrid } from './ImageGrid';
 
-const backgroundColors = [
-  '#c4b7d2',
-  '#9f5a57',
-  '#4329ad',
-  '#ae2955',
-  '#335dad',
-  '#60a372',
-  '#ad7905',
-  '#87cabf',
-  '#f2a970',
-];
+const IMAGES_PER_PAGE = 24;
 
 export const Home = () => {
-  const [text, setText] = useState('');
-  const [debouncedText] = useDebounce(text, 250);
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>('single_column');
-
-  const images = useImageSearch(debouncedText, 24, 0);
+  const {
+    text,
+    setSearchTerm,
+    loadMore,
+    isLoading,
+    imageData,
+    hasMoreImages,
+  } = useImageSearch(IMAGES_PER_PAGE);
+  const [layoutMode, setLayoutMode] = useState<LayoutMode>('three_column');
 
   return (
     <Layout>
@@ -32,34 +26,21 @@ export const Home = () => {
         placeholder="Type something to see some awesomeness"
         value={text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-          setText(e.target.value);
+          setSearchTerm(e.target.value);
         }}
       />
       <LayoutSwitcher setLayoutMode={setLayoutMode} layoutMode={layoutMode} />
 
-      <ImageGrid numOfColumns={layoutMode === 'single_column' ? 1 : 3}>
-        {images && images.data
-          ? images.data.map((img, index) => (
-              <ProgressiveImage
-                key={img.id}
-                alt={img.title}
-                thumbSrc={
-                  layoutMode === 'single_column'
-                    ? img.images.fixed_height_still.url
-                    : img.images.fixed_width_still.url
-                }
-                src={
-                  layoutMode === 'single_column'
-                    ? img.images.fixed_height.webp
-                    : img.images.fixed_width.webp
-                }
-                backgroundColor={
-                  backgroundColors[index % backgroundColors.length]
-                }
-              />
-            ))
-          : null}
-      </ImageGrid>
+      <ImageGrid
+        images={imageData && imageData.data ? imageData.data : []}
+        layoutMode={layoutMode}
+      />
+
+      <InfiniteScrollButton
+        loadMore={loadMore}
+        hidden={!hasMoreImages}
+        isLoading={isLoading}
+      />
     </Layout>
   );
 };

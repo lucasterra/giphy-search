@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
-interface ImageGridItemProps {
+interface ImageGridColumnProps {
   width?: number;
   spacing?: number;
 }
 
-export const ImageGridItem = styled('div', {
+export const ImageGridColumn = styled('div', {
   shouldForwardProp: (prop) => prop !== 'width' && prop !== 'spacing',
-})<ImageGridItemProps>(
+})<ImageGridColumnProps>(
   ({ spacing = 0 }) => ({ padding: spacing, boxSizing: 'border-box' }),
   (props) =>
     props.width && {

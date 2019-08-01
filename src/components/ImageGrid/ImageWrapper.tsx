@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
 interface ImageWrapperProps {
-  width?: number;
   spacing?: number;
-  backgroundColor?: string;
 }
 
-export const ImageWrapper = styled('div')<ImageWrapperProps>(
+export const ImageWrapper = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'spacing',
+})<ImageWrapperProps>(
   {
     position: 'relative',
     overflow: 'hidden',
@@ -14,11 +14,6 @@ export const ImageWrapper = styled('div')<ImageWrapperProps>(
     alignItems: 'self-start',
     justifyContent: 'center',
     width: '100%',
-    height: 0,
-    paddingBottom: '75%',
   },
-  ({ backgroundColor }) =>
-    backgroundColor && {
-      backgroundColor,
-    }
+  ({ spacing = 0 }) => ({ marginBottom: spacing * 2 })
 );
