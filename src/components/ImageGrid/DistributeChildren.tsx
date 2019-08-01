@@ -1,10 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { ImageGridColumn } from './ImageGridColumn';
+import { imageGridContext } from './context';
 import PriorityQueue from 'tinyqueue';
 
 interface DistributeChildrenProps {
-  numOfColumns: number;
-  spacing: number;
   childrenHeights?: number[];
   children: React.ReactNode[];
 }
@@ -67,7 +66,8 @@ export function distributeEvenly(
 }
 
 export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
-  const { children, childrenHeights, numOfColumns, spacing } = props;
+  const { numOfColumns, spacing } = useContext(imageGridContext);
+  const { children, childrenHeights } = props;
 
   if (numOfColumns < 2) {
     return (

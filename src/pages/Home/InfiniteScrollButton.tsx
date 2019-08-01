@@ -1,5 +1,5 @@
 import React, { useRef, useCallback } from 'react';
-import styled from '@emotion/styled';
+import { Button } from '../../components/Button';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 function useInfiniteScroll(loadMore: () => void) {
@@ -17,8 +17,6 @@ function useInfiniteScroll(loadMore: () => void) {
   return ref;
 }
 
-const Button = styled.button({});
-
 export interface InfiniteScrollButtonProps {
   loadMore: () => void;
   hidden: boolean;
@@ -35,6 +33,7 @@ export const InfiniteScrollButton: React.FC<InfiniteScrollButtonProps> = ({
 
   return (
     <Button
+      tabIndex={-1}
       ref={ref}
       style={hidden ? { display: 'none' } : undefined}
       onClick={loadMore}

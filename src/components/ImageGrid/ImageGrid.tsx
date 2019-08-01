@@ -32,11 +32,7 @@ export const ImageGrid = forwardRef<HTMLDivElement, ImageGridProps>(
     return (
       <Provider value={contextValue}>
         <ImageGridRoot spacing={spacing} {...props} ref={ref}>
-          <DistributeChildren
-            numOfColumns={numOfColumns}
-            spacing={spacing}
-            childrenHeights={childrenHeights}
-          >
+          <DistributeChildren childrenHeights={childrenHeights}>
             {Children.toArray(children)}
           </DistributeChildren>
         </ImageGridRoot>

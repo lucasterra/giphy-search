@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import { Button } from '../../components/Button';
 
 export type LayoutMode = 'single_column' | 'three_column';
 
@@ -10,11 +11,7 @@ interface LayoutSwitcherProps {
 
 const Wrapper = styled.div({
   display: 'flex',
-});
-
-const Button = styled.button({
-  flexGrow: 1,
-  color: 'white',
+  paddingTop: 12,
 });
 
 export const LayoutSwitcher: React.FC<LayoutSwitcherProps> = ({
@@ -22,7 +19,17 @@ export const LayoutSwitcher: React.FC<LayoutSwitcherProps> = ({
   layoutMode,
 }) => (
   <Wrapper>
-    <Button onClick={() => setLayoutMode('single_column')}>1 column</Button>
-    <Button onClick={() => setLayoutMode('three_column')}>3 column</Button>
+    <Button
+      active={layoutMode === 'single_column'}
+      onClick={() => setLayoutMode('single_column')}
+    >
+      Single column
+    </Button>
+    <Button
+      active={layoutMode === 'three_column'}
+      onClick={() => setLayoutMode('three_column')}
+    >
+      Three columns
+    </Button>
   </Wrapper>
 );
