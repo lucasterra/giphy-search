@@ -4,7 +4,7 @@ import { useIsIntersecting } from '../useIntersectionObserver';
 import {
   MockedIntersectionObserver,
   mockScroll,
-} from './MockedIntersectionObserver';
+} from './mocks/MockedIntersectionObserver';
 
 const Comp: React.FC<{ hidden: boolean }> = ({ hidden }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);

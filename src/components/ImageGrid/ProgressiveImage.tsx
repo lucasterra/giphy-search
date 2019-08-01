@@ -46,6 +46,7 @@ export const ProgressiveImage = forwardRef<
     <ImageWrapper ref={wrapperRef} spacing={context.spacing}>
       {thumbImgLoaded || mainImgLoaded ? (
         <Image
+          data-testid="image"
           alt={alt}
           src={mainImgLoaded && isVisible ? src : thumbSrc}
           {...props}
@@ -53,6 +54,7 @@ export const ProgressiveImage = forwardRef<
         />
       ) : (
         <Placeholder
+          data-testid="placeholder"
           style={{
             paddingTop: width && height ? `${height / (width / 100)}%` : '75%',
             backgroundColor,

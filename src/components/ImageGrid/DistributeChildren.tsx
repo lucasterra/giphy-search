@@ -32,11 +32,7 @@ export function distributeOnHeight(
 
   children.forEach((child, idx) => {
     const next = queue.pop();
-    if (!next) {
-      return;
-    }
-
-    const { index: columnIndex, height } = next;
+    const { index: columnIndex, height } = next!;
 
     columns[columnIndex].push(child);
     queue.push({
@@ -71,7 +67,7 @@ export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
 
   if (numOfColumns < 2) {
     return (
-      <ImageGridColumn width={100} spacing={spacing}>
+      <ImageGridColumn data-testid={`column-0`} width={100} spacing={spacing}>
         {children}
       </ImageGridColumn>
     );
@@ -88,6 +84,7 @@ export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
     <>
       {columns.map((column, idx) => (
         <ImageGridColumn
+          data-testid={`column-${idx}`}
           key={`${idx}/${numOfColumns}`}
           width={100 / numOfColumns}
           spacing={spacing}
