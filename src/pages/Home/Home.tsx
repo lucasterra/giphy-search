@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout } from '../../components/Layout';
-import { SearchBox } from '../../components/SearchBox';
+import { Input } from '../../components/Input';
 import { useImageSearch } from './useImageSearch';
 import { LayoutMode, LayoutSwitcher } from './LayoutSwitcher';
 import { InfiniteScrollButton } from './InfiniteScrollButton';
@@ -21,7 +21,7 @@ export const Home = () => {
 
   return (
     <Layout>
-      <SearchBox
+      <Input
         autoFocus
         placeholder="Type something to see some awesomeness"
         value={text}

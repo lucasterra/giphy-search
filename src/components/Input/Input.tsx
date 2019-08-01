@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { tint, shade, transparentize } from 'polished';
 
-export const SearchBoxInput = styled.input({
+export const Input = styled.input({
   backgroundColor: tint(0.09, '#121212'),
   border: `1px solid ${transparentize(0.5, tint(0.3, '#121212'))}`,
   color: '#fff',
