@@ -26,7 +26,7 @@ export const ImageGrid = memo<ImageGridProps>(({ layoutMode, images }) => {
         key={img.id}
         alt={img.title}
         thumbSrc={getThumbnailUrl(img, layoutMode)}
-        src={getMainUrl(img, layoutMode)}
+        mainSrc={getMainUrl(img, layoutMode)}
         backgroundColor={getPlaceholderColor(idx)}
         width={dimensions.width}
         height={dimensions.height}

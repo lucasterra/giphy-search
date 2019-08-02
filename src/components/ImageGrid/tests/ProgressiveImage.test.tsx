@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, act } from '@testing-library/react';
+import {
+  render,
+  act,
+  waitForElement,
+  waitForDomChange,
+} from '@testing-library/react';
 import { ProgressiveImage } from '../ProgressiveImage';
 import {
   MockedIntersectionObserver,
@@ -35,10 +40,10 @@ describe('ProgressiveImage', () => {
     });
   });
 
-  test('it runs as expected: placeholder -> thumbImg -> mainImg', () => {
-    const { queryByTestId } = render(
+  test('it runs as expected: placeholder -> thumbImg -> mainImg', async () => {
+    const { queryByTestId, getByTestId } = render(
       <ProgressiveImage
-        src={mainSrc}
+        mainSrc={[mainSrc]}
         thumbSrc={thumbSrc}
         backgroundColor="#fff"
       />
@@ -63,8 +68,10 @@ describe('ProgressiveImage', () => {
       loadThumbImg();
     });
 
-    expect(queryByTestId('image')).not.toBeNull();
-    expect(queryByTestId('image')).toHaveAttribute('src', thumbSrc);
+    const image = await waitForElement(() => queryByTestId('image'));
+
+    expect(image).not.toBeNull();
+    expect(image).toHaveAttribute('src', thumbSrc);
     expect(queryByTestId('placeholder')).toBeNull();
 
     // finally, after src is loaded, is renders the main image
@@ -72,8 +79,10 @@ describe('ProgressiveImage', () => {
       loadMainImg();
     });
 
-    expect(queryByTestId('image')).not.toBeNull();
-    expect(queryByTestId('image')).toHaveAttribute('src', mainSrc);
+    await waitForDomChange({ container: getByTestId('image') });
+
+    expect(image).not.toBeNull();
+    expect(image).toHaveAttribute('src', mainSrc);
     expect(queryByTestId('placeholder')).toBeNull();
 
     // oh, after the image is out of sight, render the thumb image again
@@ -89,7 +98,7 @@ describe('ProgressiveImage', () => {
   test('placeholder will maintains the aspect ratio if you pass width/height', () => {
     const { queryByTestId } = render(
       <ProgressiveImage
-        src={mainSrc}
+        mainSrc={[mainSrc]}
         thumbSrc={thumbSrc}
         backgroundColor="#fff"
         width={50}
