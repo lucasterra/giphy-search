@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { LayoutSwitcher } from '../LayoutSwitcher';
+import { LayoutSwitcher, LayoutMode } from '../LayoutSwitcher';
 
 const SwitcherTest = () => {
-  const [mode, setMode] = useState('three_column');
+  const [mode, setMode] = useState<LayoutMode>('three_column');
 
   return (
     <>

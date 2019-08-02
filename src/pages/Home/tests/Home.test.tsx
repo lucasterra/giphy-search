@@ -7,57 +7,79 @@ import trendingSecondPage from './fixtures/trending_1.json';
 import kittenFirstPage from './fixtures/kitten_0.json';
 import kittenSecondPage from './fixtures/kitten_1.json';
 
+const urls: { [key: string]: { url: string; data: any; error?: any } } = {
+  trendingFirstPage: {
+    url:
+      'https://api.giphy.com/v1/gifs/trending?limit=24&offset=0&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6',
+    data: trendingFirstPage,
+  },
+  trendingSecondPage: {
+    url:
+      'https://api.giphy.com/v1/gifs/trending?limit=24&offset=24&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6',
+    data: trendingSecondPage,
+  },
+  kittenFirstPage: {
+    url:
+      'https://api.giphy.com/v1/gifs/search?q=kitten&limit=24&offset=0&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6',
+    data: kittenFirstPage,
+  },
+  kittenSecondPage: {
+    url:
+      'https://api.giphy.com/v1/gifs/search?q=kitten&limit=24&offset=24&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6',
+    data: kittenSecondPage,
+    error: new Error('something is wrong'),
+  },
+};
+
+const mockConnectionStatus = { offline: false };
 const mockFetch = jest.fn();
-jest.spyOn(global as any, 'fetch').mockImplementation((url: string) => {
+jest.spyOn(global as any, 'fetch').mockImplementation((...args) => {
+  const url: string = args[0] as any;
   mockFetch(url);
 
-  switch (url) {
-    case 'https://api.giphy.com/v1/gifs/trending?limit=24&offset=0&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6':
-      return Promise.resolve({
-        json: () => Promise.resolve(trendingFirstPage),
-      });
-    case 'https://api.giphy.com/v1/gifs/trending?limit=24&offset=24&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6':
-      return Promise.resolve({
-        json: () => Promise.resolve(trendingSecondPage),
-      });
-    case 'https://api.giphy.com/v1/gifs/search?q=kitten&limit=24&offset=0&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6':
-      return Promise.resolve({
-        json: () => Promise.resolve(kittenFirstPage),
-      });
-    case 'https://api.giphy.com/v1/gifs/search?q=kitten&limit=24&offset=24&rating=G&lang=en&api_key=CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6':
-      return Promise.resolve({
-        json: () => Promise.resolve(kittenSecondPage),
-      });
-    default:
-      return Promise.resolve({
-        json: () => Promise.resolve({}),
-      });
+  console.log(url, mockConnectionStatus);
+  if (mockConnectionStatus.offline) {
+    console.log("I'm throwing!");
+    return Promise.reject(new Error());
   }
+
+  const keys = Object.keys(urls);
+  for (let i = 0; i < keys.length; i++) {
+    if (url === urls[keys[i]].url) {
+      return Promise.resolve({
+        json: () => Promise.resolve(urls[keys[i]].data),
+      });
+    }
+  }
+
+  return Promise.resolve({
+    json: () => Promise.resolve({}),
+  });
 });
 
 describe('<Home />', () => {
   test('it renders correctly', async () => {
     // initial render
-    const { getByTestId, queryByTestId } = render(<Home debounceTime={0} />);
+    const { getByTestId, queryAllByTestId } = render(<Home debounceTime={0} />);
 
     await waitForDomChange({
-      container: getByTestId('infinite-scroll-button'),
+      container: getByTestId('column-0'),
     });
 
-    expect(getByTestId('column-0')).toMatchSnapshot();
-    expect(getByTestId('column-1')).toMatchSnapshot();
-    expect(getByTestId('column-2')).toMatchSnapshot();
+    expect(mockFetch).toHaveBeenLastCalledWith(urls.trendingFirstPage.url);
+    expect(queryAllByTestId(/column-\d+/)).toHaveLength(3);
+    expect(queryAllByTestId('placeholder')).toHaveLength(24);
 
     // load more trending pictures
     fireEvent.click(getByTestId('infinite-scroll-button'));
 
     await waitForDomChange({
-      container: getByTestId('infinite-scroll-button'),
+      container: getByTestId('column-0'),
     });
 
-    expect(getByTestId('column-0')).toMatchSnapshot();
-    expect(getByTestId('column-1')).toMatchSnapshot();
-    expect(getByTestId('column-2')).toMatchSnapshot();
+    expect(mockFetch).toHaveBeenLastCalledWith(urls.trendingSecondPage.url);
+    expect(queryAllByTestId(/column-\d+/)).toHaveLength(3);
+    expect(queryAllByTestId('placeholder')).toHaveLength(48);
 
     // load kitten pictures :D
     fireEvent.change(getByTestId('searchbox'), {
@@ -65,11 +87,20 @@ describe('<Home />', () => {
     });
 
     await waitForDomChange({
-      container: getByTestId('infinite-scroll-button'),
+      container: getByTestId('column-0'),
     });
 
-    expect(getByTestId('column-0')).toMatchSnapshot();
-    expect(getByTestId('column-1')).toMatchSnapshot();
-    expect(getByTestId('column-2')).toMatchSnapshot();
+    expect(mockFetch).toHaveBeenLastCalledWith(urls.kittenFirstPage.url);
+    expect(queryAllByTestId(/column-\d+/)).toHaveLength(3);
+    expect(queryAllByTestId('placeholder')).toHaveLength(24);
+
+    // change to single column mode
+    fireEvent.click(getByTestId('single-column-button'));
+
+    await waitForDomChange({
+      container: getByTestId('grid'),
+    });
+
+    expect(queryAllByTestId(/column-\d+/)).toHaveLength(1);
   });
 });

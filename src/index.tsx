@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 // Global CSS
 import { Global } from '@emotion/core';
-import { global } from './styles/global';
+import { styles } from './styles/global';
 
 // Baseline CSS files
 import 'sanitize.css';
@@ -16,7 +16,7 @@ import 'sanitize.css/typography.css';
 // a router, such as react-router, or @reach/router
 ReactDOM.render(
   <>
-    <Global styles={global} />
+    <Global styles={styles} />
     <Home />
   </>,
   document.getElementById('root')

@@ -6,6 +6,7 @@ import {
   SET_TEXT,
   NEXT_PAGE,
   SET_IMAGE_DATA,
+  SET_ERROR,
 } from './paginationReducer';
 
 const cache = {};
@@ -15,22 +16,31 @@ const useImageFetcher = (data: {
   offset: number;
   imageData: Root | null;
   setImageData: (data: Root | null, mergeData?: boolean) => void;
+  setError: (payload: { message: string; status: string }) => void;
 }) => {
-  const { searchTerm, count, offset, imageData, setImageData } = data;
+  const { searchTerm, count, offset, imageData, setImageData, setError } = data;
 
   useEffect(() => {
     let isFresh = true;
-    searchImages(searchTerm, count, offset, cache).then((result) => {
-      if (isFresh) {
-        if (offset === 0) {
-          // first page, just override all the results
-          setImageData(result);
-        } else {
-          // second or more page, merge image data
-          setImageData(result, true);
+    searchImages(searchTerm, count, offset, cache)
+      .then((result) => {
+        if (isFresh) {
+          if (offset === 0) {
+            // first page, just override all the results
+            setImageData(result);
+          } else {
+            // second or more page, merge image data
+            setImageData(result, true);
+          }
         }
-      }
-    });
+      })
+      .catch((err) => {
+        setError({
+          message:
+            'Oops, something went wrong while getting your images. Please check your internet connection',
+          status: 'image_fetch_failed',
+        });
+      });
 
     return () => {
       isFresh = false;
@@ -47,6 +57,7 @@ export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
     page: 0,
     isLoading: false,
     imageData: null,
+    error: null,
   });
   const { text, isLoading, page, imageData } = reducerData;
 
@@ -82,6 +93,13 @@ export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
     [imageData]
   );
 
+  const setError = useCallback(
+    (payload: { message: string; status: string }) => {
+      dispatch({ type: SET_ERROR, payload });
+    },
+    []
+  );
+
   // fetch data from the API
   useImageFetcher({
     searchTerm: debouncedText,
@@ -89,6 +107,7 @@ export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
     offset: page * imagesPerPage,
     imageData,
     setImageData,
+    setError,
   });
 
   // whether we have more images to load or not
