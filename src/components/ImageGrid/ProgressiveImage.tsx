@@ -12,8 +12,10 @@ import { useIsIntersecting } from '../../hooks/useIntersectionObserver';
 import { useImageLoad } from '../../hooks/useImageLoad';
 
 const Image = styled.img({
+  position: 'absolute',
+  top: 0,
   width: '100%',
-  height: 'auto',
+  height: '100%',
 });
 
 const Placeholder = styled.div({
@@ -50,27 +52,28 @@ export const ProgressiveImage = forwardRef<
     const isVisible = useIsIntersecting(wrapperRef);
     const mainImgLoaded = useImageLoad(mainSrc, isVisible);
     const thumbImgLoaded = useImageLoad([thumbSrc], isVisible);
+    const showPlaceholder = !mainImgLoaded && !thumbImgLoaded;
 
     return (
       <ImageWrapper ref={wrapperRef} spacing={context.spacing}>
-        {thumbImgLoaded || mainImgLoaded ? (
-          <Image
-            data-testid="image"
-            alt={alt}
-            src={mainImgLoaded && isVisible ? mainImgLoaded : thumbImgLoaded}
-            {...props}
-            ref={ref}
-          />
-        ) : (
-          <Placeholder
-            data-testid="placeholder"
-            style={{
-              paddingTop:
-                width && height ? getPlaceholderPadding(width, height) : '75%',
-              backgroundColor,
-            }}
-          />
-        )}
+        <Placeholder
+          data-testid="placeholder"
+          style={{
+            paddingTop:
+              width && height ? getPlaceholderPadding(width, height) : '75%',
+            backgroundColor,
+          }}
+        >
+          {!showPlaceholder && (
+            <Image
+              data-testid="image"
+              alt={alt}
+              src={mainImgLoaded && isVisible ? mainImgLoaded : thumbImgLoaded}
+              {...props}
+              ref={ref}
+            />
+          )}
+        </Placeholder>
       </ImageWrapper>
     );
   }

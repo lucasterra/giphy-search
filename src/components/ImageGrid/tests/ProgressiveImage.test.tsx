@@ -51,7 +51,10 @@ describe('ProgressiveImage', () => {
 
     // it first renders the placeholder
     expect(queryByTestId('image')).toBeNull();
-    expect(queryByTestId('placeholder')).not.toBeNull();
+    expect(getByTestId('placeholder')).toHaveAttribute(
+      'style',
+      'padding-top: 75%; background-color: rgb(255, 255, 255);'
+    );
 
     // after the image is visibile in the screen, we start loading the images
     act(() => {
@@ -61,7 +64,6 @@ describe('ProgressiveImage', () => {
     expect(imagesStartingLoad).toContain(mainSrc);
     expect(imagesStartingLoad).toContain(thumbSrc);
     expect(queryByTestId('image')).toBeNull();
-    expect(queryByTestId('placeholder')).not.toBeNull();
 
     // then, after thumb is loaded, is renders an image
     act(() => {
@@ -72,7 +74,6 @@ describe('ProgressiveImage', () => {
 
     expect(image).not.toBeNull();
     expect(image).toHaveAttribute('src', thumbSrc);
-    expect(queryByTestId('placeholder')).toBeNull();
 
     // finally, after src is loaded, is renders the main image
     act(() => {
@@ -83,7 +84,6 @@ describe('ProgressiveImage', () => {
 
     expect(image).not.toBeNull();
     expect(image).toHaveAttribute('src', mainSrc);
-    expect(queryByTestId('placeholder')).toBeNull();
 
     // oh, after the image is out of sight, render the thumb image again
     act(() => {
@@ -92,23 +92,22 @@ describe('ProgressiveImage', () => {
 
     expect(queryByTestId('image')).not.toBeNull();
     expect(queryByTestId('image')).toHaveAttribute('src', thumbSrc);
-    expect(queryByTestId('placeholder')).toBeNull();
   });
 
   test('placeholder will maintains the aspect ratio if you pass width/height', () => {
-    const { queryByTestId } = render(
+    const { getByTestId } = render(
       <ProgressiveImage
         mainSrc={[mainSrc]}
         thumbSrc={thumbSrc}
-        backgroundColor="#fff"
+        backgroundColor="#f00"
         width={50}
         height={30}
       />
     );
 
-    expect(queryByTestId('placeholder')).toHaveAttribute(
+    expect(getByTestId('placeholder')).toHaveAttribute(
       'style',
-      'padding-top: 60%; background-color: rgb(255, 255, 255);'
+      'padding-top: 60%; background-color: rgb(255, 0, 0);'
     );
   });
 });
