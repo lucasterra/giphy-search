@@ -1,61 +1,30 @@
 import React, { memo, useContext } from 'react';
 import { ImageGridColumn } from './ImageGridColumn';
 import { imageGridContext } from './context';
-import PriorityQueue from 'tinyqueue';
 
 interface DistributeChildrenProps {
   childrenHeights?: number[];
   children: React.ReactNode[];
 }
 
-export function distributeOnHeight(
+export function distributeChildren(
   children: React.ReactNode[],
-  childrenHeights: number[],
-  numOfColumns: number
+  numOfColumns: number,
+  childrenHeights?: number[]
 ) {
   // distribute based on height
-  const queue = new PriorityQueue<{ height: number; index: number }>(
-    [],
-    (a, b) => {
-      if (a.height === b.height) {
-        return a.index - b.index;
-      }
-      return a.height - b.height;
-    }
-  );
-
-  let columns: React.ReactNode[][] = [];
+  const columns: React.ReactNode[][] = [];
+  const heights: number[] = [];
   for (let i = 0; i < numOfColumns; i++) {
-    columns[i] = [];
-    queue.push({ height: 0, index: i });
+    columns.push([]);
+    heights.push(0); // each column gets a height starting with zero
   }
 
   children.forEach((child, idx) => {
-    const next = queue.pop();
-    const { index: columnIndex, height } = next!;
+    const next = heights.indexOf(Math.min(...heights)); // find column with lowest height using Math.min
+    heights[next] += childrenHeights ? childrenHeights[idx] : 10; // increase the height there
 
-    columns[columnIndex].push(child);
-    queue.push({
-      height: height + childrenHeights[idx],
-      index: columnIndex,
-    });
-  });
-
-  return columns;
-}
-
-export function distributeEvenly(
-  children: React.ReactNode[],
-  numOfColumns: number
-) {
-  let columns: React.ReactNode[][] = [];
-  for (let i = 0; i < numOfColumns; i++) {
-    columns[i] = [];
-  }
-
-  // just distribute evenly
-  children.forEach((child, idx) => {
-    columns[idx % numOfColumns].push(child);
+    columns[next].push(child);
   });
 
   return columns;
@@ -73,12 +42,7 @@ export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
     );
   }
 
-  let columns: React.ReactNode[][];
-  if (childrenHeights && childrenHeights.length === children.length) {
-    columns = distributeOnHeight(children, childrenHeights, numOfColumns);
-  } else {
-    columns = distributeEvenly(children, numOfColumns);
-  }
+  let columns = distributeChildren(children, numOfColumns, childrenHeights);
 
   return (
     <>

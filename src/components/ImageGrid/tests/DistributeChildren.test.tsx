@@ -1,4 +1,4 @@
-import { distributeEvenly, distributeOnHeight } from '../DistributeChildren';
+import { distributeChildren } from '../DistributeChildren';
 
 describe('DistributeChildren', () => {
   describe('distributeOnHeight', () => {
@@ -6,7 +6,7 @@ describe('DistributeChildren', () => {
       const children = ['1', '2', '3', '4', '5', '6', '7'];
       const childrenHeights = [20, 20, 20, 20, 20, 20, 20];
 
-      const columns = distributeOnHeight(children, childrenHeights, 3);
+      const columns = distributeChildren(children, 3, childrenHeights);
 
       expect(columns).toMatchInlineSnapshot(`
                 Array [
@@ -31,7 +31,7 @@ describe('DistributeChildren', () => {
       const children = ['1', '2', '3', '4', '5', '6', '7'];
       const childrenHeights = [60, 20, 20, 20, 20, 20, 20];
 
-      const columns = distributeOnHeight(children, childrenHeights, 3);
+      const columns = distributeChildren(children, 3, childrenHeights);
 
       expect(columns).toMatchInlineSnapshot(`
         Array [
@@ -57,7 +57,7 @@ describe('DistributeChildren', () => {
     test('same height items', () => {
       const children = ['1', '2', '3', '4', '5', '6', '7'];
 
-      const columns = distributeEvenly(children, 3);
+      const columns = distributeChildren(children, 3);
 
       expect(columns).toMatchInlineSnapshot(`
                         Array [
