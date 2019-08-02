@@ -64,6 +64,10 @@ export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
   // debounce text changes, to avoid calling GIPHY API on every keystroke
   const [debouncedText] = useDebounce(text, debounceTime);
 
+  //////////////////////////////////
+  // Actions
+  //////////////////////////////////
+
   // functions passed on hook return
   const setSearchTerm = useCallback((text: string) => {
     dispatch({ type: SET_TEXT, payload: text });
@@ -93,12 +97,17 @@ export const useImageSearch = (imagesPerPage: number, debounceTime = 250) => {
     [imageData]
   );
 
+  // Sets error state
   const setError = useCallback(
     (payload: { message: string; status: string }) => {
       dispatch({ type: SET_ERROR, payload });
     },
     []
   );
+
+  //////////////////////////////////
+  // Data fetching
+  //////////////////////////////////
 
   // fetch data from the API
   useImageFetcher({

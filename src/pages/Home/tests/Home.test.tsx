@@ -31,17 +31,10 @@ const urls: { [key: string]: { url: string; data: any; error?: any } } = {
   },
 };
 
-const mockConnectionStatus = { offline: false };
 const mockFetch = jest.fn();
 jest.spyOn(global as any, 'fetch').mockImplementation((...args) => {
   const url: string = args[0] as any;
   mockFetch(url);
-
-  console.log(url, mockConnectionStatus);
-  if (mockConnectionStatus.offline) {
-    console.log("I'm throwing!");
-    return Promise.reject(new Error());
-  }
 
   const keys = Object.keys(urls);
   for (let i = 0; i < keys.length; i++) {
