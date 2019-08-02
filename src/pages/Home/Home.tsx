@@ -29,8 +29,9 @@ export const Home: React.FC<HomeProps> = ({ debounceTime = 250 }) => {
     <Layout>
       <Input
         autoFocus
+        aria-label="Search images on GIPHY"
         data-testid="searchbox"
-        placeholder="Type something to see some awesomeness"
+        placeholder="Search GIPHY"
         value={text}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
           setSearchTerm(e.target.value);
