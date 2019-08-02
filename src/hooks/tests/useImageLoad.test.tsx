@@ -11,7 +11,7 @@ const DumbImage: React.FC<{ src: string[] | string; enabled: boolean }> = ({
   return <div data-testid="img">{String(loaded)}</div>;
 };
 
-const unsupportedImage = 'https://example.com/image.mp5';
+const unsupportedImage = 'https://example.com/image.webp';
 const goodImage = 'https://example.com/image.jpg';
 const badImage = 'https://example.com/fake_image.jpg';
 

@@ -1,17 +1,48 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 
+async function supportsWebp() {
+  let hasWebpSupport = false;
+  let tested = false;
+
+  if (tested) {
+    return hasWebpSupport;
+  }
+
+  // taken from: https://davidwalsh.name/detect-webp
+  tested = true;
+  hasWebpSupport = await (async () => {
+    if (!window.createImageBitmap) return false;
+
+    const webpData =
+      'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+    const blob = await fetch(webpData).then((r) => r.blob());
+    return window.createImageBitmap(blob).then(() => true, () => false);
+  })();
+
+  return hasWebpSupport;
+}
+
 const loadImage = (src: string) => {
-  return new Promise<string>((resolve, reject) => {
+  return new Promise<string>(async (resolve, reject) => {
+    if (src.endsWith('.webp') && (await supportsWebp()) === false) {
+      reject(new Error());
+      return;
+    }
+
     const img = new Image();
     img.onload = () => resolve(src);
-    img.onerror = reject;
+    img.onerror = () => {
+      reject(new Error());
+    };
 
     img.src = src;
   });
 };
 
-const loadImages = (srcImgs: string[]) => {
+// Will try to load images from srcImgs... you can pass many strings, to make it
+// fallback to a supported format. i.e.: ['img.webp', 'img.mp4', 'img.gif']
+const loadImagesWithFallback = (srcImgs: string[]) => {
   return new Promise<string>(async (resolve, reject) => {
     if (!srcImgs || srcImgs.length === 0) {
       reject(new Error());
@@ -54,7 +85,7 @@ export const useImageLoad = (srcImgs: string[] | string, enabled: boolean) => {
     if (srcImgsArray && srcImgsArray.length > 0 && enabled) {
       let isFresh = true;
 
-      loadImages(srcImgsArray)
+      loadImagesWithFallback(srcImgsArray)
         .then((img) => {
           if (isFresh) {
             setSrc(img);
