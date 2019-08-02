@@ -2,7 +2,7 @@ This project is a GIPHY Search web app written in React and making use of the [G
 
 ## Demo
 
-We have a demo of this app deployed on Netlify:
+We have a demo of this app deployed on Netlify: [https://giphy-search-1025.netlify.com/](https://giphy-search-1025.netlify.com/)
 
 ## Running locally
 
