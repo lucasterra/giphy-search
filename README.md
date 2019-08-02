@@ -52,7 +52,7 @@ Open http://localhost:5000 to view it in the browser
   - After the final animated image is loaded, show it!
   - When the image container goes out of screen, go back to the static image.
 
-Read [FEATURES.md](docs/features.md) to see how I approached each of the above components.
+Read [features.md](docs/features.md) to see how I approached each of the above components.
 
 ## Tradeoffs
 
