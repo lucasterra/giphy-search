@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { ImageGrid } from '../ImageGrid';
+import '@testing-library/react/cleanup-after-each';
 
 const images = [
   1,

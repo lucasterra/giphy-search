@@ -6,8 +6,8 @@ import React, {
   Children,
 } from 'react';
 import { imageGridContext, ImageGridContextProps } from './context';
-import { ImageGridRoot } from './ImageGridRoot';
-import { DistributeChildren } from './DistributeChildren';
+import { GridRoot } from './styledComponents';
+import { MasonryGrid } from './MasonryGrid';
 
 const { Provider } = imageGridContext;
 
@@ -31,11 +31,11 @@ export const ImageGrid = forwardRef<HTMLDivElement, ImageGridProps>(
 
     return (
       <Provider value={contextValue}>
-        <ImageGridRoot spacing={spacing} {...props} ref={ref}>
-          <DistributeChildren childrenHeights={childrenHeights}>
+        <GridRoot spacing={spacing} {...props} ref={ref}>
+          <MasonryGrid childrenHeights={childrenHeights}>
             {Children.toArray(children)}
-          </DistributeChildren>
-        </ImageGridRoot>
+          </MasonryGrid>
+        </GridRoot>
       </Provider>
     );
   }

@@ -7,7 +7,6 @@ import React, {
 } from 'react';
 import styled from '@emotion/styled';
 import { imageGridContext } from './context';
-import { ImageWrapper } from './ImageWrapper';
 import { useIsIntersecting } from '../../hooks/useIntersectionObserver';
 import { useImageLoad } from '../../hooks/useImageLoad';
 
@@ -18,9 +17,19 @@ const Image = styled.img({
   height: '100%',
 });
 
-const Placeholder = styled.div({
-  width: '100%',
-});
+const Placeholder = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'spacing',
+})<{ spacing?: number }>(
+  {
+    position: 'relative',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'self-start',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  ({ spacing = 0 }) => ({ marginBottom: spacing * 2 })
+);
 
 // Based on this: https://danieljones.design/css-aspect-ratio-calculator/
 function getPlaceholderPadding(width: number, height: number) {
@@ -55,26 +64,26 @@ export const ProgressiveImage = forwardRef<
     const showPlaceholder = !mainImgLoaded && !thumbImgLoaded;
 
     return (
-      <ImageWrapper ref={wrapperRef} spacing={context.spacing}>
-        <Placeholder
-          data-testid="placeholder"
-          style={{
-            paddingTop:
-              width && height ? getPlaceholderPadding(width, height) : '75%',
-            backgroundColor,
-          }}
-        >
-          {!showPlaceholder && (
-            <Image
-              data-testid="image"
-              alt={alt}
-              src={mainImgLoaded && isVisible ? mainImgLoaded : thumbImgLoaded}
-              {...props}
-              ref={ref}
-            />
-          )}
-        </Placeholder>
-      </ImageWrapper>
+      <Placeholder
+        data-testid="placeholder"
+        ref={wrapperRef}
+        spacing={context.spacing}
+        style={{
+          paddingTop:
+            width && height ? getPlaceholderPadding(width, height) : '75%',
+          backgroundColor,
+        }}
+      >
+        {!showPlaceholder && (
+          <Image
+            data-testid="image"
+            alt={alt}
+            src={mainImgLoaded && isVisible ? mainImgLoaded : thumbImgLoaded}
+            {...props}
+            ref={ref}
+          />
+        )}
+      </Placeholder>
     );
   }
 );

@@ -5,6 +5,7 @@ import {
   MockedIntersectionObserver,
   mockScroll,
 } from './mocks/MockedIntersectionObserver';
+import '@testing-library/react/cleanup-after-each';
 
 const Comp: React.FC<{ hidden: boolean }> = ({ hidden }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);

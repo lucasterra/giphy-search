@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, act, waitForDomChange } from '@testing-library/react';
+import { render, waitForDomChange, act, wait } from '@testing-library/react';
 import { useImageLoad } from '../useImageLoad';
+import '@testing-library/react/cleanup-after-each';
 
 const DumbImage: React.FC<{ src: string[] | string; enabled: boolean }> = ({
   src,
@@ -11,8 +12,8 @@ const DumbImage: React.FC<{ src: string[] | string; enabled: boolean }> = ({
   return <div data-testid="img">{String(loaded)}</div>;
 };
 
-const unsupportedImage = 'https://example.com/image.webp';
-const goodImage = 'https://example.com/image.jpg';
+const webpImage = 'https://example.com/image.webp';
+const jpgImage = 'https://example.com/image.jpg';
 const badImage = 'https://example.com/fake_image.jpg';
 
 describe('useImageLoad hook', () => {
@@ -22,9 +23,7 @@ describe('useImageLoad hook', () => {
     Object.defineProperty((global as any).Image.prototype, 'src', {
       // Define the property setter
       set(src) {
-        if (src === unsupportedImage) {
-          this.onerror();
-        } else if (src === goodImage) {
+        if (src === jpgImage || src === webpImage) {
           this.onload();
         } else {
           // do not load...
@@ -35,27 +34,52 @@ describe('useImageLoad hook', () => {
   });
 
   test('hook disabled', () => {
-    const ret = render(<DumbImage src={goodImage} enabled={false} />);
+    const ret = render(<DumbImage src={jpgImage} enabled={false} />);
 
     expect(ret.getByTestId('img')).toHaveTextContent('undefined');
   });
 
   test('hook enabled', async () => {
-    const ret = render(<DumbImage src={goodImage} enabled={true} />);
+    const ret = render(<DumbImage src={jpgImage} enabled={true} />);
 
     await waitForDomChange({ container: ret.getByTestId('img') });
 
-    expect(ret.getByTestId('img')).toHaveTextContent(goodImage);
+    expect(ret.getByTestId('img')).toHaveTextContent(jpgImage);
   });
 
-  test('hook enabled, with fallback', async () => {
+  test('hook enabled, with fallback, webp not available', async () => {
     const ret = render(
-      <DumbImage src={[unsupportedImage, goodImage]} enabled={true} />
+      <DumbImage src={[webpImage, jpgImage]} enabled={true} />
     );
 
     await waitForDomChange({ container: ret.getByTestId('img') });
 
-    expect(ret.getByTestId('img')).toHaveTextContent(goodImage);
+    expect(ret.getByTestId('img')).toHaveTextContent(jpgImage);
+  });
+
+  test('hook enabled, with fallback, webp enabled', async () => {
+    let resolveCreateBitmap: any;
+    let resolveFetch: any;
+    (global as any).createImageBitmap = () =>
+      new Promise((_resolve) => {
+        resolveCreateBitmap = _resolve;
+      });
+    (global as any).fetch = () =>
+      new Promise((_resolve) => {
+        resolveFetch = _resolve;
+      });
+
+    const ret = render(
+      <DumbImage src={[webpImage, jpgImage]} enabled={true} />
+    );
+
+    await act(async () => {
+      resolveFetch({ blob: () => 'some blob' });
+      await wait();
+      resolveCreateBitmap();
+    });
+
+    expect(ret.getByTestId('img')).toHaveTextContent(webpImage);
   });
 
   test("hook enabled, image won't load", () => {

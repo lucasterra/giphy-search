@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { LayoutSwitcher, LayoutMode } from '../LayoutSwitcher';
+import '@testing-library/react/cleanup-after-each';
 
 const SwitcherTest = () => {
   const [mode, setMode] = useState<LayoutMode>('three_column');

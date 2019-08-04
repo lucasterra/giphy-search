@@ -1,8 +1,8 @@
 import React, { memo, useContext } from 'react';
-import { ImageGridColumn } from './ImageGridColumn';
+import { GridColumn } from './styledComponents';
 import { imageGridContext } from './context';
 
-interface DistributeChildrenProps {
+interface MasonryGridProps {
   childrenHeights?: number[];
   children: React.ReactNode[];
 }
@@ -30,15 +30,15 @@ export function distributeChildren(
   return columns;
 }
 
-export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
+export const MasonryGrid = memo<MasonryGridProps>((props) => {
   const { numOfColumns, spacing } = useContext(imageGridContext);
   const { children, childrenHeights } = props;
 
   if (numOfColumns < 2) {
     return (
-      <ImageGridColumn data-testid={`column-0`} width={100} spacing={spacing}>
+      <GridColumn data-testid={`column-0`} width={100} spacing={spacing}>
         {children}
-      </ImageGridColumn>
+      </GridColumn>
     );
   }
 
@@ -47,14 +47,14 @@ export const DistributeChildren = memo<DistributeChildrenProps>((props) => {
   return (
     <>
       {columns.map((column, idx) => (
-        <ImageGridColumn
+        <GridColumn
           data-testid={`column-${idx}`}
           key={`${idx}/${numOfColumns}`}
           width={100 / numOfColumns}
           spacing={spacing}
         >
           {column}
-        </ImageGridColumn>
+        </GridColumn>
       ))}
     </>
   );

@@ -18,7 +18,7 @@ Source: [LayoutSwitcher component](../src/pages/Home/LayoutSwitcher.tsx)
 
 This grid is implemented by distributing the children into separate columns. It will take the columns heights into account, to make sure they are all well balanced. This balancing is done using [Math.min](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/min) to figure out which column to add to next.
 
-Source: [DistributeChildren component](../src/components/ImageGrid/DistributeChildren.tsx)
+Source: [MasonryGrid component](../src/components/ImageGrid/MasonryGrid.tsx)
 
 ## - Infinite Loading
 

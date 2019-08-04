@@ -10,6 +10,7 @@ import {
   MockedIntersectionObserver,
   mockScroll,
 } from '../../../hooks/tests/mocks/MockedIntersectionObserver';
+import '@testing-library/react/cleanup-after-each';
 
 const thumbSrc = 'https://example.com/thumb_image.jpg';
 const mainSrc = 'https://example.com/main_image.jpg';

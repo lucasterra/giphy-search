@@ -1,6 +1,6 @@
-import { distributeChildren } from '../DistributeChildren';
+import { distributeChildren } from '../MasonryGrid';
 
-describe('DistributeChildren', () => {
+describe('MasonryGrid', () => {
   describe('distributeOnHeight', () => {
     test('same height items', () => {
       const children = ['1', '2', '3', '4', '5', '6', '7'];

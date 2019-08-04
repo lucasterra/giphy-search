@@ -5,6 +5,7 @@ import {
   mockScroll,
 } from '../../../hooks/tests/mocks/MockedIntersectionObserver';
 import { InfiniteScrollButton } from '../InfiniteScrollButton';
+import '@testing-library/react/cleanup-after-each';
 
 describe('InfiniteScrollButton', () => {
   beforeAll(() => {
