@@ -2,7 +2,7 @@ This project is a GIPHY Search web app written in React and making use of the [G
 
 ## Demo
 
-We have a demo of this app deployed on Netlify: [https://giphy-search-1025.netlify.com/](https://giphy-search-1025.netlify.com/)
+There is a demo of this app deployed on Netlify: [https://giphy-search-1025.netlify.com/](https://giphy-search-1025.netlify.com/)
 
 ## Running locally
 
@@ -56,8 +56,9 @@ Read [features.md](docs/features.md) to see how I approached each of the above c
 
 ## Tradeoffs
 
-There are a few things I didn't bother implementing:
+There are a few things I didn't bother implementing, or that I am not super happy with:
 
+- Using Alpha version of React (16.9.0-alpha.0) because I needed the assynchronous `act` API to write the tests in a more resilient manner. [See this](https://github.com/threepointone/react-act-examples/blob/master/sync.md#secrets-of-the-act-api)
 - Routing: I could implement some basic routing with react-router (or even raw history API) to keep the URL in sync with the search input. If I had implemented this, your searches would be shareable by copy/pasting a url. i.e.: example.com/search?q=kitten
 - GIF Details: I would love to be able to open a dialog and load a specific image in higher quality.
-- I could reuse a single IntersectionObserver object, instead of creating one for each image. Or reusing a library which has this implemented ([react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)). The problem with `react-intersection-observer` is that it doesn't provide a way to notify about intersection changes without triggering a rerender in the component.
+- I could reuse a single IntersectionObserver object, instead of creating one for each image. Or could have reused a library which has this implemented ([react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)). The problem with `react-intersection-observer` is that it doesn't provide a way to notify about intersection changes without triggering a rerender in the component.
