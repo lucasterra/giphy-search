@@ -54,6 +54,8 @@ Open http://localhost:5000 to view it in the browser
 
 Read [features.md](docs/features.md) to see how I approached each of the above components.
 
+Also read [folder_structure.md](docs/folder_structure.md) to understand how the code in this project is organized.
+
 ## Tradeoffs
 
 There are a few things I didn't bother implementing, or that I am not super happy with:
