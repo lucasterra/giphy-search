@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/lucasterra/giphy-search.svg?style=svg)](https://circleci.com/gh/lucasterra/giphy-search)
+
 This project is a GIPHY Search web app written in React and making use of the [GIPHY API](https://developers.giphy.com/docs/api).
 
 ## Demo
