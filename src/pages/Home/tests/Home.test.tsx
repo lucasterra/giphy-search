@@ -122,14 +122,19 @@ describe('<Home />', () => {
     expect(queryAllByTestId('placeholder')).toHaveLength(24);
   });
 
-  test("load more 'kitten' images", async () => {
+  test("load more 'kitten' images and avoid double loading", async () => {
+    mockFetch.mockClear();
+
     // load kitten pictures :D
     await act(async () => {
       fireEvent.click(queryByText('Load more'));
       await wait();
+      fireEvent.click(queryByText('Loading'));
+      await wait();
       resolve!();
     });
 
+    expect(mockFetch).toHaveBeenCalledTimes(1);
     expect(mockFetch).toHaveBeenLastCalledWith(urls.kittenSecondPage.url);
     expect(queryAllByTestId('placeholder')).toHaveLength(48);
   });

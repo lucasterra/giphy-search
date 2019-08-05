@@ -1,27 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 
-async function supportsWebp() {
+const supportsWebp = (() => {
   let hasWebpSupport = false;
   let tested = false;
 
-  if (tested) {
+  return async () => {
+    if (tested) {
+      return hasWebpSupport;
+    }
+
+    // taken from: https://davidwalsh.name/detect-webp
+    tested = true;
+    hasWebpSupport = await (async () => {
+      if (!window.createImageBitmap) return false;
+
+      const webpData =
+        'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
+      const blob = await fetch(webpData).then((r) => r.blob());
+      return window.createImageBitmap(blob).then(() => true, () => false);
+    })();
+
     return hasWebpSupport;
-  }
-
-  // taken from: https://davidwalsh.name/detect-webp
-  tested = true;
-  hasWebpSupport = await (async () => {
-    if (!window.createImageBitmap) return false;
-
-    const webpData =
-      'data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=';
-    const blob = await fetch(webpData).then((r) => r.blob());
-    return window.createImageBitmap(blob).then(() => true, () => false);
-  })();
-
-  return hasWebpSupport;
-}
+  };
+})();
 
 const loadImage = (src: string) => {
   return new Promise<string>(async (resolve, reject) => {
@@ -44,14 +46,9 @@ const loadImage = (src: string) => {
 // fallback to a supported format. i.e.: ['img.webp', 'img.mp4', 'img.gif']
 const loadImagesWithFallback = (srcImgs: string[]) => {
   return new Promise<string>(async (resolve, reject) => {
-    if (!srcImgs || srcImgs.length === 0) {
-      reject(new Error());
-      return;
-    }
-
     let i = 0;
     const tryLoadImg = (src: string) => {
-      loadImage(srcImgs[i])
+      loadImage(src)
         .then((img) => {
           resolve(img);
         })
