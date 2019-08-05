@@ -3,7 +3,7 @@ import { render, act } from '@testing-library/react';
 import { useIsIntersecting } from '../useIntersectionObserver';
 import {
   MockedIntersectionObserver,
-  mockScroll,
+  mockIsIntersecting,
 } from './mocks/MockedIntersectionObserver';
 import '@testing-library/react/cleanup-after-each';
 
@@ -37,7 +37,7 @@ describe('useIntersectionObserver', () => {
     expect(getByTestId('target')).toHaveTextContent('false');
 
     act(() => {
-      mockScroll && mockScroll(5000);
+      mockIsIntersecting(true);
     });
 
     expect(getByTestId('target')).toHaveTextContent('true');

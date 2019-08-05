@@ -2,7 +2,7 @@ import React from 'react';
 import { render, act } from '@testing-library/react';
 import {
   MockedIntersectionObserver,
-  mockScroll,
+  mockIsIntersecting,
 } from '../../../hooks/tests/mocks/MockedIntersectionObserver';
 import { InfiniteScrollButton } from '../InfiniteScrollButton';
 import '@testing-library/react/cleanup-after-each';
@@ -25,7 +25,7 @@ describe('InfiniteScrollButton', () => {
     expect(container).toHaveTextContent('Load more');
 
     act(() => {
-      mockScroll!(5500);
+      mockIsIntersecting(true);
     });
 
     expect(mockLoadMore).toHaveBeenCalled();

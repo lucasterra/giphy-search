@@ -8,7 +8,7 @@ import {
 import { ProgressiveImage } from '../ProgressiveImage';
 import {
   MockedIntersectionObserver,
-  mockScroll,
+  mockIsIntersecting,
 } from '../../../hooks/tests/mocks/MockedIntersectionObserver';
 import '@testing-library/react/cleanup-after-each';
 
@@ -59,7 +59,7 @@ describe('ProgressiveImage', () => {
 
     // after the image is visibile in the screen, we start loading the images
     act(() => {
-      mockScroll!(5500);
+      mockIsIntersecting(true);
     });
 
     expect(imagesStartingLoad).toContain(mainSrc);
@@ -88,7 +88,7 @@ describe('ProgressiveImage', () => {
 
     // oh, after the image is out of sight, render the thumb image again
     act(() => {
-      mockScroll!(0);
+      mockIsIntersecting(false);
     });
 
     expect(queryByTestId('image')).not.toBeNull();

@@ -1,4 +1,4 @@
-export let mockScroll: ((scrollY: number) => void) | null = null;
+export let mockIsIntersecting: (isIntersecting: boolean) => void;
 
 export class MockedIntersectionObserver {
   constructor(handler: (entries: IntersectionObserverEntry[]) => void) {
@@ -13,10 +13,10 @@ export class MockedIntersectionObserver {
       y: 0,
     };
 
-    mockScroll = (scrollY: number) => {
+    mockIsIntersecting = (isIntersecting: boolean) => {
       handler([
         {
-          isIntersecting: scrollY >= 5000,
+          isIntersecting,
           target: null as any,
           boundingClientRect: emptyRect,
           intersectionRatio: 0.0,
