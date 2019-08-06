@@ -12,6 +12,12 @@ export function distributeChildren(
   numOfColumns: number,
   childrenHeights?: number[]
 ) {
+  if (childrenHeights && childrenHeights.length !== children.length) {
+    throw new Error(
+      'children and childrenHeights arrays must have the same size'
+    );
+  }
+
   // distribute based on height
   const columns: React.ReactNode[][] = [];
   const heights: number[] = [];
