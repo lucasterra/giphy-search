@@ -3,12 +3,12 @@ import React, {
   DetailedHTMLProps,
   ImgHTMLAttributes,
   useContext,
-  useRef,
 } from 'react';
 import styled from '@emotion/styled';
+import { useInView } from 'react-intersection-observer';
 import { imageGridContext } from './context';
-import { useIsIntersecting } from '../../hooks/useIntersectionObserver';
 import { useImageLoad } from '../../hooks/useImageLoad';
+import 'intersection-observer'; // polyfill
 
 const Image = styled.img({
   position: 'absolute',
@@ -57,8 +57,7 @@ export const ProgressiveImage = forwardRef<
     ref
   ) => {
     const context = useContext(imageGridContext);
-    const wrapperRef = useRef<HTMLDivElement | null>(null);
-    const isVisible = useIsIntersecting(wrapperRef);
+    const [wrapperRef, isVisible] = useInView();
     const mainImgLoaded = useImageLoad(mainSrc, isVisible);
     const thumbImgLoaded = useImageLoad([thumbSrc], isVisible);
     const showPlaceholder = !mainImgLoaded && !thumbImgLoaded;

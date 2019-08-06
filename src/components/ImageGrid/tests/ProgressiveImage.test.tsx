@@ -6,10 +6,7 @@ import {
   waitForDomChange,
 } from '@testing-library/react';
 import { ProgressiveImage } from '../ProgressiveImage';
-import {
-  MockedIntersectionObserver,
-  mockIsIntersecting,
-} from '../../../hooks/tests/mocks/MockedIntersectionObserver';
+import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 import '@testing-library/react/cleanup-after-each';
 
 const thumbSrc = 'https://example.com/thumb_image.jpg';
@@ -21,8 +18,6 @@ describe('ProgressiveImage', () => {
   let loadMainImg: any = null;
 
   beforeAll(() => {
-    (global as any).IntersectionObserver = MockedIntersectionObserver;
-
     Object.defineProperty((global as any).Image.prototype, 'src', {
       set(src) {
         imagesStartingLoad.push(src);
@@ -59,7 +54,7 @@ describe('ProgressiveImage', () => {
 
     // after the image is visibile in the screen, we start loading the images
     act(() => {
-      mockIsIntersecting(true);
+      mockAllIsIntersecting(true);
     });
 
     expect(imagesStartingLoad).toContain(mainSrc);
@@ -88,7 +83,7 @@ describe('ProgressiveImage', () => {
 
     // oh, after the image is out of sight, render the thumb image again
     act(() => {
-      mockIsIntersecting(false);
+      mockAllIsIntersecting(false);
     });
 
     expect(queryByTestId('image')).not.toBeNull();

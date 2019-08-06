@@ -1,17 +1,10 @@
 import React from 'react';
 import { render, act } from '@testing-library/react';
-import {
-  MockedIntersectionObserver,
-  mockIsIntersecting,
-} from '../../../hooks/tests/mocks/MockedIntersectionObserver';
+import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 import { InfiniteScrollButton } from '../InfiniteScrollButton';
 import '@testing-library/react/cleanup-after-each';
 
 describe('InfiniteScrollButton', () => {
-  beforeAll(() => {
-    (global as any).IntersectionObserver = MockedIntersectionObserver;
-  });
-
   test('renders correctly', () => {
     const mockLoadMore = jest.fn();
     const { container } = render(
@@ -25,7 +18,7 @@ describe('InfiniteScrollButton', () => {
     expect(container).toHaveTextContent('Load more');
 
     act(() => {
-      mockIsIntersecting(true);
+      mockAllIsIntersecting(true);
     });
 
     expect(mockLoadMore).toHaveBeenCalled();

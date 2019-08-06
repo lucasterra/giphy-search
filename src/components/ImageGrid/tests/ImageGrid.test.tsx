@@ -71,7 +71,7 @@ describe('ImageGrid', () => {
 
     it('renders 1 column correctly', () => {
       const { getByTestId } = render(
-        <ImageGrid childrenHeights={imageHeights} numOfColumns={1}>
+        <ImageGrid childrenHeights={imageHeights}>
           {images.map((img, idx) => (
             <div key={`${idx}/${3}`}>{String(img)}|</div>
           ))}

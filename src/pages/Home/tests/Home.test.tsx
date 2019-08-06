@@ -1,14 +1,12 @@
 import React from 'react';
 import { render, fireEvent, act, wait, cleanup } from '@testing-library/react';
 import { Home } from '../Home';
-import { MockedIntersectionObserver } from '../../../hooks/tests/mocks/MockedIntersectionObserver';
+import 'react-intersection-observer/test-utils';
 
 import trendingFirstPage from './fixtures/trending_0.json';
 import trendingSecondPage from './fixtures/trending_1.json';
 import kittenFirstPage from './fixtures/kitten_0.json';
 import kittenSecondPage from './fixtures/kitten_1.json';
-
-(global as any).IntersectionObserver = MockedIntersectionObserver;
 
 const urls: { [key: string]: { url: string; data: any; error?: any } } = {
   trendingFirstPage: {
@@ -114,7 +112,8 @@ describe('<Home />', () => {
       fireEvent.change(getByTestId('searchbox'), {
         target: { value: 'kitten' },
       });
-      await wait();
+      await wait(); // one cycle for text update
+      await wait(); // one cycle for api call
       resolve!();
     });
 

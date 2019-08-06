@@ -1,18 +1,18 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Button } from '../../components/Button';
-import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { useInView } from 'react-intersection-observer';
+import 'intersection-observer'; // polyfill
 
 function useInfiniteScroll(loadMore: () => void) {
-  const ref = useRef<HTMLButtonElement | null>(null);
-  const onIntersectionChanged = useCallback(
-    (intersecting: boolean) => {
-      if (intersecting) {
-        loadMore();
-      }
-    },
-    [loadMore]
-  );
-  useIntersectionObserver(ref, null, '50px', 0.1, onIntersectionChanged);
+  const wasInView = useRef<boolean>(false);
+  const [ref, inView] = useInView({ rootMargin: '50px' });
+
+  useEffect(() => {
+    if (!wasInView.current && inView) {
+      loadMore();
+    }
+    wasInView.current = inView;
+  }, [inView, loadMore]);
 
   return ref;
 }
