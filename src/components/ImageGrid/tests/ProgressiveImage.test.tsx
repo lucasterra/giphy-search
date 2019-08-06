@@ -5,7 +5,7 @@ import {
   waitForElement,
   waitForDomChange,
 } from '@testing-library/react';
-import { ProgressiveImage } from '../ProgressiveImage';
+import { ProgressiveImage, Placeholder } from '../ProgressiveImage';
 import { mockAllIsIntersecting } from 'react-intersection-observer/test-utils';
 import '@testing-library/react/cleanup-after-each';
 
@@ -105,5 +105,13 @@ describe('ProgressiveImage', () => {
       'style',
       'padding-top: 60%; background-color: rgb(255, 0, 0);'
     );
+  });
+
+  test('renders placeholder with fallback padding', () => {
+    const { container } = render(
+      <Placeholder>Hello from placeholder</Placeholder>
+    );
+
+    expect(container).toHaveTextContent('Hello from placeholder');
   });
 });

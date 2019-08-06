@@ -17,7 +17,7 @@ const Image = styled.img({
   height: '100%',
 });
 
-const Placeholder = styled('div', {
+export const Placeholder = styled('div', {
   shouldForwardProp: (prop) => prop !== 'spacing',
 })<{ spacing?: number }>(
   {

@@ -28,7 +28,7 @@ describe('searchImages API client', () => {
 
   describe('search kittens', () => {
     test('call with page 0', async () => {
-      const result = await searchImages('kittens', 20, 0);
+      const result = await searchImages('kittens');
 
       expect(globalAny.fetch).toHaveBeenCalledTimes(1);
       expect(globalAny.fetch).toHaveBeenLastCalledWith(
