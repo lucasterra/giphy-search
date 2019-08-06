@@ -63,7 +63,6 @@ Also read [folder_structure.md](docs/folder_structure.md) to understand how the 
 
 There are a few things I didn't bother implementing, or that I am not super happy with:
 
-- Using Alpha version of React (16.9.0-alpha.0) because I needed the assynchronous `act` API to write the tests in a more resilient manner. [See this](https://github.com/threepointone/react-act-examples/blob/master/sync.md#secrets-of-the-act-api)
+- Using Release Candidate version of React (16.9.0-rc.0) because I needed the assynchronous `act` API to write the tests in a more resilient manner. [See this](https://github.com/threepointone/react-act-examples/blob/master/sync.md#secrets-of-the-act-api)
 - Routing: I could implement some basic routing with react-router (or even raw history API) to keep the URL in sync with the search input. If I had implemented this, your searches would be shareable by copy/pasting a url. i.e.: example.com/search?q=kitten
 - GIF Details: I would love to be able to open a dialog and load a specific image in higher quality.
-- I could reuse a single IntersectionObserver object, instead of creating one for each image. Or could have reused a library which has this implemented ([react-intersection-observer](https://github.com/thebuilder/react-intersection-observer)). The problem with `react-intersection-observer` is that it doesn't provide a way to notify about intersection changes without triggering a rerender in the component.

@@ -22,14 +22,14 @@ Source: [MasonryGrid component](../src/components/ImageGrid/MasonryGrid.tsx)
 
 ## Infinite Loading
 
-Uses [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to figure out when you have scrolled close enough to a "Load more" button, and trigger the data fetching functions.
+Uses [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) and [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer) to figure out when you have scrolled close enough to a "Load more" button, and trigger the data fetching functions.
 
-Source: [InfiniteScrollButton component](../src/pages/Home/InfiniteScrollButton.tsx) and [useIntersectionObserver hook](../src/hooks/useIntersectionObserver.ts)
+Source: [InfiniteScrollButton component](../src/pages/Home/InfiniteScrollButton.tsx)
 
 ## Progressive Image and Lazy Image Loading
 
-Uses [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) to figure out when the image container is visible in the screen.  
+Uses [IntersectionObserver API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) and [react-intersection-observer](https://github.com/thebuilder/react-intersection-observer) to figure out when the image container is visible in the screen.  
 The placeholder is rendered using a paddingTop technique described [here](https://danieljones.design/css-aspect-ratio-calculator/).  
 Once the image container is visible, it starts loading the images using the [Image API](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/Image).
 
-Source: [ProgressiveImage component](../src/components/ImageGrid/ProgressiveImage.tsx), [useImageLoad hook](../src/hooks/useImageLoad.ts) and [useIntersectionObserver hook](../src/hooks/useIntersectionObserver.ts)
+Source: [ProgressiveImage component](../src/components/ImageGrid/ProgressiveImage.tsx), [useImageLoad hook](../src/hooks/useImageLoad.ts)
