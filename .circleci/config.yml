@@ -25,7 +25,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run tests!
-      - run: yarn test --watchAll=false --collectCoverage
+      - run: yarn test --watchAll=false --collectCoverage && yarn codecov
       
       # save coverage artifacts
       - store_artifacts:
